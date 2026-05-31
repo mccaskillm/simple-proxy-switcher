@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Proxy Switcher</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Top Section: Status & Toggle -->
+        <div class="header-card">
+            <div class="status-icon-wrapper" id="statusIconWrapper">
+                <!-- SVG Icon: Globe -->
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+            </div>
+            
+            <h2 id="statusTitle">System Proxy</h2>
+            <p id="statusSubtitle">Direct Connection</p>
+
+            <div class="toggle-container">
+                <input type="checkbox" id="proxyToggle">
+                <label for="proxyToggle" class="toggle-switch">
+                    <span class="power-icon">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                            <line x1="12" y1="2" x2="12" y2="12"></line>
+                        </svg>
+                    </span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Middle Section: Configuration -->
+        <div class="config-section">
+            <div class="input-group">
+                <label for="protocol">Protocol</label>
+                <div class="input-wrapper">
+                    <!-- Icon: Layers/Server -->
+                    <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    
+                    <select id="protocol">
+                        <option value="http">HTTP</option>
+                        <option value="https">HTTPS</option>
+                        <option value="socks4">SOCKS4</option>
+                        <option value="socks5">SOCKS5</option>
+                    </select>
+                    <!-- Chevron -->
+                    <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-group flex-grow">
+                    <label for="host">Server Host</label>
+                    <div class="input-wrapper">
+                        <!-- Icon: Hash/IP -->
+                        <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                        <input type="text" id="host" placeholder="127.0.0.1" autocomplete="off">
+                    </div>
+                </div>
+                <div class="input-group w-short">
+                    <label for="port">Port</label>
+                    <div class="input-wrapper">
+                        <!-- Icon: Anchor/Port -->
+                        <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <input type="number" id="port" placeholder="8080" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+
+            <button id="saveBtn">Save Settings</button>
+            <div id="msg" class="message"></div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            Simple Proxy Switcher
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+/* Reset & Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #f8fafc; /* Slate 50 */
+    width: 360px; /* Increased width to prevent layout cramping */
+    height: auto;
+    color: #334155;
+}
+
+.container {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* --- Header Card (Status Section) --- */
+.header-card {
+    background: white;
+    border-radius: 20px;
+    padding: 28px 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent; 
+}
+
+/* Icon Wrapper */
+.status-icon-wrapper {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: #f1f5f9; /* Slate 100 */
+    color: #94a3b8; /* Slate 400 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.status-icon-wrapper svg {
+    width: 32px;
+    height: 32px;
+    stroke-width: 1.5;
+}
+
+/* Titles */
+h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #475569; /* Slate 600 */
+    margin-bottom: 4px;
+    transition: color 0.3s;
+}
+
+#statusSubtitle {
+    font-size: 13px;
+    font-weight: 500;
+    color: #94a3b8; /* Slate 400 */
+    margin-bottom: 20px;
+    transition: color 0.3s;
+}
+
+/* Toggle Switch */
+.toggle-container {
+    position: relative;
+    width: 60px;
+    height: 34px;
+}
+
+input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.toggle-switch {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cbd5e1; /* Slate 300 */
+    transition: .4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 34px;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.toggle-switch:before {
+    position: absolute;
+    content: "";
+    height: 28px;
+    width: 28px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.power-icon {
+    position: absolute;
+    left: 9px;
+    top: 9px;
+    z-index: 3;
+    color: #cbd5e1;
+    transition: .4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- ACTIVE STATE (Scoped to Header) --- */
+input:checked + .toggle-switch {
+    background-color: #10b981; /* Emerald 500 */
+}
+
+input:checked + .toggle-switch:before {
+    transform: translateX(26px);
+}
+
+input:checked + .toggle-switch .power-icon {
+    color: #10b981;
+    transform: translateX(26px);
+}
+
+body.proxy-on .header-card {
+    border-color: #10b981;
+    box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.15);
+    background-color: #ffffff;
+}
+
+body.proxy-on .status-icon-wrapper {
+    background-color: #d1fae5;
+    color: #059669;
+    transform: scale(1.05);
+}
+
+body.proxy-on h2 {
+    color: #059669;
+}
+
+body.proxy-on #statusSubtitle {
+    color: #10b981;
+}
+
+/* --- Configuration Section --- */
+.config-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.row {
+    display: flex;
+    gap: 12px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+}
+
+.flex-grow { flex-grow: 1; }
+/* Increased width to ensure 4-5 digit ports fit comfortably */
+.w-short { width: 105px; } 
+
+label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: 2px;
+}
+
+/* Input Wrapper for Icons */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 12px;
+    color: #94a3b8;
+    pointer-events: none;
+    z-index: 10;
+    transition: color 0.2s;
+}
+
+input, select {
+    padding: 10px 12px 10px 38px; /* Extra padding left for icon */
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #334155;
+    background: white;
+    outline: none;
+    transition: all 0.2s;
+    width: 100%;
+    appearance: none;
+    font-weight: 500;
+}
+
+/* Hide default spin buttons for number inputs to save space */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input::placeholder {
+    color: #cbd5e1;
+}
+
+/* Input Focus States */
+input:focus, select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+input:focus + .input-icon,
+.input-wrapper:focus-within .input-icon {
+    color: #3b82f6;
+}
+
+/* Select Arrow */
+.select-arrow {
+    position: absolute;
+    right: 12px;
+    color: #94a3b8;
+    pointer-events: none;
+}
+
+/* Main Button */
+button {
+    margin-top: 8px;
+    padding: 12px;
+    background-color: #3b82f6; /* Blue Primary */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
+}
+
+button:hover {
+    background-color: #2563eb;
+    box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+    transform: translateY(-1px);
+}
+
+button:active {
+    background-color: #1d4ed8;
+    transform: translateY(0);
+}
+
+/* Success State for Button */
+button.saved {
+    background-color: #10b981;
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 500;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Message Text */
+.message {
+    text-align: center;
+    font-size: 12px;
+    height: 14px;
+    color: #10b981;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s;
+    margin-top: -10px;
+}
+.message.show { opacity: 1; }
+.message.error { color: #ef4444; }
